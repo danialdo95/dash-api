@@ -5,6 +5,7 @@ const swaggerJsdoc = require("swagger-jsdoc");
 const app = express();
 
 const userRoutes = require("./routes/users");
+const authRoutes = require("./routes/auth"); // Assuming you have an auth route file
 
 app.use(express.json()); // For parsing JSON
 
@@ -32,7 +33,10 @@ app.get("/", (req, res) => {
 const specs = swaggerJsdoc(options);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
-app.use("/api/users", userRoutes);
+app.use("/api/users", userRoutes); 
+
+app.use("/api/auth", authRoutes); // Assuming you have an auth route file
+
 
 const PORT = process.env.PORT || 3000;
 
