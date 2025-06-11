@@ -1,12 +1,16 @@
 const express = require("express");
+
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 
-const app = express();
+const sequelize = require('./config/database');
 
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth"); // Assuming you have an auth route file
 
+
+
+const app = express();
 app.use(express.json()); // For parsing JSON
 
 const options = {
@@ -40,6 +44,22 @@ app.use("/api/auth", authRoutes); // Assuming you have an auth route file
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Test DB connection before starting
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('✅ Sequelize connected to Postgres');
+    // Optionally sync all models:
+    // return sequelize.sync({ alter: true });
+  })
+  .then(() => {
+    app.listen(PORT, () =>    console.log(`Server running on port ${PORT}`));
+  })
+  .catch(err => {
+    console.error('❌ Unable to connect to Postgres:', err);
+    process.exit(1);
+  });
+
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
