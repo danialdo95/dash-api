@@ -1,7 +1,16 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/database'); // Adjust the path as necessary
 
-class User extends Model {}
+class User extends Model {
+    // You can define instance methods here if needed
+
+    static async findByUsername(username) {
+        return this.findOne({ where: { username } });
+    }
+}
+
+
+// Define the User model
 User.init({
   id: {
     type: DataTypes.INTEGER,
@@ -33,6 +42,10 @@ User.init({
   tableName: 'users',
   timestamps: true // Adds createdAt and updatedAt fields
 });
+
+
+
+
 // Sync the model with the database
 (async () => {
   try {

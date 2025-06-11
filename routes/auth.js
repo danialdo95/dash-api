@@ -24,6 +24,33 @@ router.get("/protected", authMiddleware, (req, res) => {
 
 /**
  * @swagger
+ * /api/auth/register:
+ *  post:
+ *   summary: User registration
+ *   description: Register a new user and return a success message.
+ *   requestBody:
+ *     required: true
+ *     content:
+ *       application/json:
+ *         schema:
+ *           type: object
+ *           properties:
+ *             username:
+ *               type: string
+ *             password:
+ *               type: string
+ *             email:   
+ *              type: string
+ *   responses:
+ *     201:
+ *       description: User registered successfully
+ *     400:
+ *       description: Bad request, e.g., missing fields or invalid data
+ */
+router.post("/register", authController.register);
+
+/**
+ * @swagger
  * /api/auth/login:
  *  post:
  *   summary: User login

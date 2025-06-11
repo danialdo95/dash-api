@@ -3,17 +3,20 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User"); // Assuming you have a User model defined
 
 exports.register = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, email } = req.body;
+
+  console.log("Registering user:", username);
+  console.log("Password:", password);
 
   // Check if user already exists
-  const existingUser = await User.find({ username });
+  const existingUser = await User.findByUsername(username);
   if (existingUser) {
     return res.status(400).json({ message: "User already exists" });
   }
   // Hash the password
   const hashedPassword = await bcrypt.hash(password, 10);
   // Create a new user
-  const newUser = new User({ username, password: hashedPassword });
+  const newUser = new User({ username, password: hashedPassword, email: email });
   await newUser.save();
   // Respond with success
   res.status(201).json({ message: "User registered successfully" });
