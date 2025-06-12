@@ -10,6 +10,17 @@ const router = express.Router();
  *    get:
  *     summary: Get protected user data
  *     description: This route is protected and requires a valid JWT token to access.
+ *     security:
+ *       - bearerAuth: []
+ *     tags:
+ *       - Auth
+ *     parameters:
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         schema:
+ *           type: string
+ *           example: Bearer <your_jwt_token>
  *     responses:
  *       200:
  *         description: Protected user data

@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken");
 module.exports = (req, res, next) => {
   // Middleware to protect routes with JWT authentication
   console.log("Auth middleware triggered");
+
+  console.log("Request headers:", req.headers);
   if (!req.headers || !req.headers.authorization) {
     return res.status(403).json({ message: "Forbidden" });
   }

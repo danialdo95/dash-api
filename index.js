@@ -4,6 +4,7 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 
 const sequelize = require('./config/database');
+const swagger = require('./config/swagger');
 
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth"); // Assuming you have an auth route file
@@ -13,29 +14,13 @@ const authRoutes = require("./routes/auth"); // Assuming you have an auth route 
 const app = express();
 app.use(express.json()); // For parsing JSON
 
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Dash API",
-      version: "1.0.0",
-      description: "A simple Express API",
-    },
-    servers: [
-      {
-        url: "http://localhost:3000",
-      },
-    ],
-  },
-  apis: ["./routes/*.js"], // Adjust this based on where your route files are
-};
 
 app.get("/", (req, res) => {
   res.send("Hello API!");
 });
 
-const specs = swaggerJsdoc(options);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+// Expose Swagger UI (no auth here, so you can grab a token first)
+app.use('/api-docs', swagger.serve, swagger.setup);
 
 app.use("/api/users", userRoutes); 
 
