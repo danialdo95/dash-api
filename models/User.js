@@ -44,16 +44,5 @@ User.init({
 });
 
 
-
-
-// Sync the model with the database
-(async () => {
-  try {
-    await sequelize.sync({ alter: true }); // Use { force: true } to drop and recreate the table
-    console.log('✅ User model synced with database');
-  } catch (error) {
-    console.error('❌ Error syncing User model:', error);
-  }
-})();
 module.exports = User;
 // This code defines a User model using Sequelize ORM for a PostgreSQL database.

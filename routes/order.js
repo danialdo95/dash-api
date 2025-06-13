@@ -1,9 +1,3 @@
-// GET    /api/orders                         → list orders (filter by status/date)  
-// GET    /api/orders/:orderId                → order detail (items, shipping, payment)  
-// POST   /api/orders                         → manually create/order (if needed)  
-// PUT    /api/orders/:orderId                → update status (e.g. “shipped”, “delivered”)  
-// DELETE /api/orders/:orderId                → cancel order  
-
 const express = require("express");
 const authMiddleware = require("../middleware/auth");
 const orderController = require("../controllers/order");
@@ -73,7 +67,7 @@ router.get("/:orderId", authMiddleware, orderController.getOrderDetails);
  *       201:
  *         description: Order created successfully
  */
-router.post("/", authMiddleware, orderController.createOrder); 
+router.post("/", authMiddleware, orderController.createNewOrder); 
 
 /**
  * @swagger
@@ -125,6 +119,12 @@ router.put("/:orderId", authMiddleware, orderController.updateOrderStatus);
  *         description: Order cancelled successfully
  */
 router.delete("/:orderId", authMiddleware, orderController.cancelOrder);
+
+// GET    /api/orders                         → list orders (filter by status/date)  
+// GET    /api/orders/:orderId                → order detail (items, shipping, payment)  
+// POST   /api/orders                         → manually create/order (if needed)  
+// PUT    /api/orders/:orderId                → update status (e.g. “shipped”, “delivered”)  
+// DELETE /api/orders/:orderId                → cancel order  
 
 module.exports = router;
 // This code defines the routes for managing orders in an e-commerce application.

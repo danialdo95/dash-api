@@ -8,7 +8,7 @@ const swaggerDefinition = {
   info: {
     title: "My E-commerce Dashboard API",
     version: "1.0.0",
-    description: "…",
+    description: "API documentation for the E-commerce Dashboard",
   },
   components: {
     securitySchemes: {

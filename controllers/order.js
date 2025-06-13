@@ -70,7 +70,7 @@ exports.getOrderDetails = (req, res) => {
         });
 }
 
-exports.createNewOrder =  (req, res) => {
+exports.createNewOrder = (req, res) => {
     const { customerId, totalAmount, status = "pending" } = req.body;
     console.log("Creating new order with data:", req.body);
 
@@ -91,7 +91,7 @@ exports.createNewOrder =  (req, res) => {
             res.status(500).json({ message: "Internal server error" });
         });
 }
- 
+
 exports.updateOrderStatus = (req, res) => {
     const orderId = req.params.orderId;
     const { status } = req.body;

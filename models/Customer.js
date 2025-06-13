@@ -39,13 +39,4 @@ Customer.init({
     timestamps: true // Adds createdAt and updatedAt fields
 });
 
-// Sync the model with the database
-(async () => {
-    try {
-        await sequelize.sync({ alter: true }); // Use { force: true } to drop and recreate the table
-        console.log('✅ Customer model synced with database');
-    } catch (error) {
-        console.error('❌ Error syncing Customer model:', error);
-    }
-})();
 module.exports = Customer;

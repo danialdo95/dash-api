@@ -1,8 +1,3 @@
-// GET    /api/customers                      → list / search customers  
-// GET    /api/customers/:customerId          → customer details (orders, profile)  
-// PUT    /api/customers/:customerId          → update customer info  
-// DELETE /api/customers/:customerId          → (optional) deactivate account  
-
 const express = require("express");
 const authMiddleware = require("../middleware/auth");
 const customerController = require("../controllers/customer");
@@ -102,6 +97,10 @@ router.put("/:customerId", authMiddleware, customerController.updateCustomerDeta
  */
 router.delete("/:customerId", authMiddleware, customerController.deleteCustomer);
 
+// GET    /api/customers                      → list / search customers  
+// GET    /api/customers/:customerId          → customer details (orders, profile)  
+// PUT    /api/customers/:customerId          → update customer info  
+// DELETE /api/customers/:customerId          → (optional) deactivate account  
 
 module.exports = router;
 // Export the router to be used in the main app
