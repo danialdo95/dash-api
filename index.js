@@ -8,7 +8,9 @@ const swagger = require('./config/swagger');
 
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth"); // Assuming you have an auth route file
-
+const productRoutes = require("./routes/product"); // Assuming you have a products route file
+const orderRoutes = require("./routes/order"); // Assuming you have an orders route file
+const customerRoutes = require("./routes/customer"); // Assuming you have a customers route file
 
 
 const app = express();
@@ -22,9 +24,12 @@ app.get("/", (req, res) => {
 // Expose Swagger UI (no auth here, so you can grab a token first)
 app.use('/api-docs', swagger.serve, swagger.setup);
 
-app.use("/api/users", userRoutes); 
-
+app.use("/api/users", userRoutes); // Assuming you have a users route file
 app.use("/api/auth", authRoutes); // Assuming you have an auth route file
+app.use("api/orders", orderRoutes); // Assuming you have an orders route file
+app.use("api/customers", customerRoutes); // Assuming you have a customers route file
+app.use("api/products", productRoutes); // Assuming you have a products route file
+
 
 
 const PORT = process.env.PORT || 3000;

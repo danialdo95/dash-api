@@ -54,18 +54,6 @@ exports.logout = (req, res) => {
   // In a real application, you might want to handle token invalidation or session management.
   // For example, you could store the token in a blacklist or database to prevent its use.
   // This is a simple example, and you might want to implement more complex logic for session management.
-  // For now, we will just send a success message.
-  // Note: JWTs are stateless, so there's no server-side session to clear.
-  // If you want to implement token invalidation, you would need to maintain a blacklist of tokens.
-  // For simplicity, we will just send a success message.
-  // In a real application, you might want to handle token invalidation or session management.
-  // For example, you could store the token in a blacklist or database to prevent its use.
-  // This is a simple example, and you might want to implement more complex logic for session management.
-  // For now, we will just send a success message.
-  // Note: JWTs are stateless, so there's no server-side session to clear.
-  // If you want to implement token invalidation, you would need to maintain a blacklist of tokens.
-
-  // For simplicity, we will just send a success message.
   res.json({ message: "User logged out successfully" });
 }
 // Middleware to protect routes with JWT authentication   
