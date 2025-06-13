@@ -26,9 +26,9 @@ app.use('/api-docs', swagger.serve, swagger.setup);
 
 app.use("/api/users", userRoutes); // Assuming you have a users route file
 app.use("/api/auth", authRoutes); // Assuming you have an auth route file
-app.use("api/orders", orderRoutes); // Assuming you have an orders route file
-app.use("api/customers", customerRoutes); // Assuming you have a customers route file
-app.use("api/products", productRoutes); // Assuming you have a products route file
+app.use("/api/orders", orderRoutes); // Assuming you have an orders route file
+app.use("/api/customers", customerRoutes); // Assuming you have a customers route file
+app.use("/api/products", productRoutes); // Assuming you have a products route file
 
 
 
