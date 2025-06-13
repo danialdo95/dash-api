@@ -10,17 +10,8 @@ const router = express.Router();
  *    get:
  *     summary: Get protected user data
  *     description: This route is protected and requires a valid JWT token to access.
- *     security:
- *       - bearerAuth: []
  *     tags:
  *       - Auth
- *     parameters:
- *       - in: header
- *         name: Authorization
- *         required: true
- *         schema:
- *           type: string
- *           example: Bearer <your_jwt_token>
  *     responses:
  *       200:
  *         description: Protected user data
@@ -39,6 +30,8 @@ router.get("/protected", authMiddleware, (req, res) => {
  *  post:
  *   summary: User registration
  *   description: Register a new user and return a success message.
+ *   tags:
+ *     - Auth
  *   requestBody:
  *     required: true
  *     content:
@@ -66,6 +59,8 @@ router.post("/register", authController.register);
  *  post:
  *   summary: User login
  *   description: Authenticate user and return a JWT token.
+ *   tags:
+ *     - Auth
  *   requestBody:
  *     required: true
  *     content:
