@@ -28,7 +28,7 @@ app.use("/api/orders", orderRoutes); // Assuming you have an orders route file
 app.use("/api/customers", customerRoutes); // Assuming you have a customers route file
 app.use("/api/products", productRoutes); // Assuming you have a products route file
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 // Test DB connection before starting
 sequelize
